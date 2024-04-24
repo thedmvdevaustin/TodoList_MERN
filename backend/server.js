@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 dotenv.config()
+import cookieParser from 'cookie-parser'
 import connectDB from './config/db.js'
 import userRoutes from './routes/usersRoutes.js'
 import todosRoutes from './routes/todosRoutes.js'
@@ -12,6 +13,8 @@ connectDB()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.use(cookieParser())
 
 app.use('/users', userRoutes )
 app.use('/profile', todosRoutes )

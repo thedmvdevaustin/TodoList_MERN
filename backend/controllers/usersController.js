@@ -46,6 +46,11 @@ const loginUser = asyncHandler(async (req, res) => {
 })
 
 const logoutUser = asyncHandler(async (req, res) => {
+    // logic for this is to create a new http only cookie and make it expire immediately
+    res.cookie('jwt', process.env.JWT_SECRET, {
+        httpOnly: true,
+        expires: new Date(0), // makes it expire immediately
+    })
     res.status(200).json({message: 'User logged out'})
 })
 
