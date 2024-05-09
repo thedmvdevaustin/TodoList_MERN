@@ -26,6 +26,13 @@ nav {
     color: white;
 }
 
+/* .select-container > button {
+    background-color: inherit;
+    color: white;
+    border: none;
+    font-size: 1em;
+} */
+
 .navbar-active {
     background-color: rgba(30,30,30, 0.15);
 }
@@ -141,7 +148,7 @@ nav {
     color: white;
 }
 
-.register-input-button > a {
+.register-input-button > button {
     color: white;
     font-weight: bold;
     padding: .7em .9em;
@@ -189,9 +196,10 @@ nav {
     margin: 1.5em 0;
 }
 
-.login-input-button > a {
+.login-input-button > button {
+    border: none;
     text-decoration: none;
-    padding: .7em .9em;
+    padding: 1em 1.2em;
     background-color:rgb(1,233,134);
     font-weight: bold;
     border-radius: .25em;

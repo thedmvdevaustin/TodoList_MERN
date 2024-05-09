@@ -1,6 +1,21 @@
-import { NavLink, Link } from 'react-router-dom'
-
+import { NavLink, Link, useNavigate } from 'react-router-dom'
+import { useLogoutMutation } from '../slices/usersApiSlice'
+import { useDispatch } from 'react-redux'
+import { logout } from '../slices/authSlice'
 const Header = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const [logoutUser, { isLoading }] = useLogoutMutation()
+    const handleLogoutClick = async e => {
+        e.preventDefault()
+        try{
+            await logoutUser().unwrap()
+            dispatch(logout())
+            navigate('/')
+        } catch(err){
+            console.log(err)
+        }
+    }
     return (
         <>
             <header>
@@ -12,11 +27,10 @@ const Header = () => {
                         <NavLink className={({ isActive }) => {
                             (isActive ? 'navbar-active' : 'navbar-inactive')
                         }} to="/dashboard">Dashboard</NavLink>
-                        {/* change the to; needs to be /dashboard  */}
                     </div>
                     <h2 className="todoList-header">TodoList</h2>
                     <div className="select-container">
-                        <Link to="/logout">Logout</Link>
+                        <Link onClick={handleLogoutClick} to="/">Logout</Link>
                         <NavLink className={({ isActive }) => {
                             (isActive ? 'navbar-active' : 'navbar-inactive')
                         }} to="/login">Login</NavLink>
