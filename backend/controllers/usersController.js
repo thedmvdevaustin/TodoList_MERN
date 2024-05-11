@@ -54,6 +54,7 @@ const logoutUser = asyncHandler(async (req, res) => {
     res.status(200).json({message: 'User logged out'})
 })
 
+//Add a update profile function that allows the user to update their login information
 
 
 

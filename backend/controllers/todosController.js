@@ -4,10 +4,7 @@ import asyncHandler from 'express-async-handler'
 const getTodos = asyncHandler(async (req, res) => {
     const todos = await Todo.find({user: req.user._id})
     console.log(todos)
-    res.status(200).json({
-        todo: todos.todo,
-        isCompleted: todos.isCompleted,
-    })
+    res.status(200).json(todos)
 })
 
 const getTodoById = asyncHandler(async(req, res) => {
@@ -22,7 +19,9 @@ const getTodoById = asyncHandler(async(req, res) => {
             console.log(todo)
             res.status(200).json({
                 todo: todo.todo,
-                isCompleted: todo.isCompleted
+                isCompleted: todo.isCompleted,
+                createdAt: todo.createdAt,
+                updatedAt: todo.updatedAt
             })
         }
     }

@@ -1,5 +1,5 @@
 import { apiSlice } from './apiSlice'
-const USERS_URL = '/users'
+const USERS_URL = '/api/users'
 
 export const usersApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -22,7 +22,8 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 url: `${USERS_URL}/logout`,
                 method: 'POST',
             })
-        })
+        }),
+        //add an action that allows the user to update their profile
     })
 })
 

@@ -99,7 +99,6 @@ nav {
 }
 
 .form-input-container > input {
-    color: white;
     padding: .3em;
     
 }
@@ -237,7 +236,12 @@ nav {
     padding-right: .5em;
 }
 
-.todos-container-buttons > svg + svg {
+.todos-container-buttons > button {
+    border: none;
+    background-color: inherit;
+}
+
+.todos-container-buttons > svg {
     color: rgb(1,233,134);
 }
 
@@ -249,7 +253,11 @@ nav {
     background-color: rgb(73,73,73);
 }
 
-.todo > h4 {
+.todo > a {
+    text-decoration: none
+}
+
+.todo > a >h4 {
     color: rgb(1,233,134);
     padding-left: .5em;
 }
@@ -276,6 +284,24 @@ nav {
 .completed {
     background-color: rgb(73,73,73)
 }
+
+.todoDetails-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.todoDetails{
+    /* background-color: black; */
+    
+}
+
+
+
+
+
 
 
 
