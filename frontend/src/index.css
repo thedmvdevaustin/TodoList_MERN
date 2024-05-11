@@ -287,6 +287,7 @@ nav {
 
 .todoDetails-container{
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     justify-content: center;
@@ -294,10 +295,28 @@ nav {
 }
 
 .todoDetails{
+    padding: 5em;
+    margin-top: 1rem;
     /* background-color: black; */
-    
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15), -1px -1px 3px  rgba(0,0,0,0.15);
+    background-color: rgb(61,61,61);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.todoDetails > .todo {
+    width: 90%;
+    padding: 0 3em;
+}
+.todoDetails > a {
+    text-decoration: none;
+    padding: .7em .9em;
+    background-color: rgb(1,233,134);
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+}
 
 
 
