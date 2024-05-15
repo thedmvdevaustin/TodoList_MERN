@@ -23,7 +23,6 @@ const Todos = () => {
     return (
         <ul className="todos-container">
             {data && data.map((todo, index) => <li className="todo" key={todo._id}>
-                {console.log(todo)}
                 <Link to={`/${todo._id}`}><h4>{todo.todo}</h4></Link>
                 <div className="todos-container-buttons">
                     <button type="button" onClick={() => handleDelete(todo._id)}><FontAwesomeIcon icon={faTrash} /></button>
