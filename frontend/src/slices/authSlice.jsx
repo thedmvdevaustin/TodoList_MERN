@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { useSelector } from 'react-redux'
 
 const initialState = {
     userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
@@ -21,4 +22,5 @@ const authSlice = createSlice({
 
 export const { setCredentials, logout } = authSlice.actions
 
+export const userInfo = state => state.auth.userInfo
 export default authSlice.reducer

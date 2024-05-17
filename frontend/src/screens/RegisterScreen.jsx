@@ -46,6 +46,7 @@ const RegisterScreen = () => {
             const res = await register({ name, email, password}).unwrap()
             dispatch(setCredentials({ ...res }))
             navigate("/dashboard")
+            toast.success("You are registered successfully! Please log in")
         } catch(err){
             toast.error(err?.data?.message || err.error)
         }
@@ -72,6 +73,9 @@ const RegisterScreen = () => {
                 </div>
                 <div className="register-input-button">
                     <button type="submit">Register</button>
+                </div>
+                <div className="toLogin-container">
+                    <span>Already registered? <Link to='/login'>Login</Link></span>
                 </div>
             </form>
         </div>

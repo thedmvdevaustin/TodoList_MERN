@@ -11,16 +11,23 @@ import LoginScreen from './screens/LoginScreen.jsx'
 import ProfileScreen from './screens/ProfileScreen.jsx'
 import DashboardScreen from './screens/DashboardScreen.jsx'
 import TodoDetailsScreen from './screens/TodoDetailsScreen.jsx'
+import PrivateRoute from './components/PrivateRoute.jsx'
+import PublicRoute from './components/PublicRoute.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App />}>
-      <Route index={true} path='/' element={<HomeScreen />} />
-      <Route path='/register' element={<RegisterScreen />} />
-      <Route path='login' element={<LoginScreen />} />
-      <Route path='/profile' element={<ProfileScreen />} />
-      <Route path='/dashboard' element={<DashboardScreen />} />
-      <Route path='/:id' element={<TodoDetailsScreen />} />
+      <Route path='/' element={<PublicRoute />}>
+        <Route index={true} path='/' element={<HomeScreen />} />
+        <Route path='/register' element={<RegisterScreen />} />
+        <Route path='login' element={<LoginScreen />} />
+      </Route>
+
+      <Route path="/" element={<PrivateRoute />}>
+        <Route path='/profile' element={<ProfileScreen />} />
+        <Route path='/dashboard' element={<DashboardScreen />} />
+        <Route path='/:id' element={<TodoDetailsScreen />} />
+      </Route>
     </Route>
   )
 )

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCredentials } from '../slices/authSlice'
 import { useLoginMutation } from '../slices/usersApiSlice'
@@ -37,6 +37,7 @@ const LoginScreen = () => {
             const res = await login({ email, password }).unwrap()
             dispatch(setCredentials({ ...res }))
             navigate('/dashboard')
+            toast.success("You are logged in")
         } catch(err){
             toast.error(err?.data?.message || err.error)
         }
@@ -53,10 +54,13 @@ const LoginScreen = () => {
                 </div>
                 <div className="login-input-container">
                     <label htmlFor="password">Password:</label>
-                    <input type="text" id="password" onChange={handlePassword} value={password} required />
+                    <input type="password" id="password" onChange={handlePassword} value={password} required />
                 </div>
-                <div className="login-input-button">
+                <div className="login-input-button-container">
                     <button type="submit">Login</button>
+                </div>
+                <div className="toRegister-container">
+                    <span>Still need to register? <Link to='/register'>Register</Link></span>
                 </div>
             </form>
         </div>

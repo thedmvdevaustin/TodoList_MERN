@@ -1,9 +1,9 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useGetTodoByIdQuery, useDeleteTodoMutation } from '../slices/todosApiSlice'
+import { useGetTodoByIdQuery, useDeleteTodoMutation, useMarkCompleteMutation, useUnMarkCompleteMutation } from '../slices/todosApiSlice'
 import { Link } from 'react-router-dom'
 import dateFormat from 'dateformat'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faCheck } from "@fortawesome/free-solid-svg-icons"
+import { faTrash, faSquareCheck, faSquare } from "@fortawesome/free-solid-svg-icons"
 import { toast } from 'react-toastify' 
 
 const TodoDetailsScreen = () => {
@@ -12,14 +12,27 @@ const TodoDetailsScreen = () => {
     const { data = []} = useGetTodoByIdQuery(id)
 
     const [deleteTodo, { isLoading}] = useDeleteTodoMutation()
+    const [markcomplete] = useMarkCompleteMutation()
+    const [markInComplete] = useUnMarkCompleteMutation()
 
     const handleDelete = (todoId) => {
         if (window.confirm('Are you sure')){
             deleteTodo(todoId)
-            toast("Deleted Todo")
+            toast.success("Deleted Todo")
             navigate('/dashboard')
         }
     }
+
+    const handleMarkComplete = (todoId) => {
+        markcomplete(todoId)
+        toast.success("Completed Todo")
+    }
+
+    const handleUnMarkComplete = (todoId) => {
+        markInComplete(todoId)
+        toast("Todo Marked Incomplete")
+    }
+
     return (
         <div className="todoDetails-container">
             <h2>More Details</h2>
@@ -28,7 +41,9 @@ const TodoDetailsScreen = () => {
                     <Link to="/dashboard"><h4>{data && data.todo}</h4></Link>
                     <div className="todos-container-buttons">
                         <button type="button" onClick={() => handleDelete(data._id)}><FontAwesomeIcon icon={faTrash} /></button>
-                        <FontAwesomeIcon icon={faCheck} />
+                        {data.isCompleted ? 
+                        <button type="button" onClick={() => handleUnMarkComplete(data._id)}><FontAwesomeIcon icon={faSquareCheck} /></button> : 
+                        <button type="button" id="faSquare" onClick={() => handleMarkComplete(data._id)}><FontAwesomeIcon icon={faSquare} /></button>}
                     </div>
                 </div>
                 <span>This specific todo is {data.isCompleted ? "completed" : "not completed"}</span>

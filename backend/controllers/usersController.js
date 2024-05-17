@@ -55,11 +55,37 @@ const logoutUser = asyncHandler(async (req, res) => {
 })
 
 //Add a update profile function that allows the user to update their login information
+const updateUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id)
+    if (!user){
+        res.status(404).json({message: "User not found"})
+    } else {
+        const { name, email, password } = req.body
+        user.name = name || user.name
+        user.email = email || user.email
+        if (password) {
+            user.password = password
+        }
+        const updatedUser = await user.save()
+        res.status(200).json({
+            email: updatedUser.email,
+            name: updatedUser.name,
+            _id: updatedUser._id
+        })
+    }
 
+    // await User.findOneAndUpdate({ email }, {
+    //     name,
+    //     email,
+    //     password
+    // })
+    // res.status(200).json({message: 'User was updated'})
+})
 
 
 export {
     registerUser,
     loginUser,
-    logoutUser
+    logoutUser,
+    updateUser
 }

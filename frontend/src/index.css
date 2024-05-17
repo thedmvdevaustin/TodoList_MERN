@@ -155,6 +155,8 @@ nav {
     border-radius: .25em;
     background-color: rgb(1,233,134);
     text-decoration: none;
+    font-size: 1rem;
+    margin-bottom: .5rem;
 }
 
 /* Login Screen style */
@@ -191,11 +193,11 @@ nav {
     color: white;
 }
 
-.login-input-button {
+.login-input-button-container {
     margin: 1.5em 0;
 }
 
-.login-input-button > button {
+.login-input-button-container > button {
     border: none;
     text-decoration: none;
     padding: 1em 1.2em;
@@ -203,7 +205,14 @@ nav {
     font-weight: bold;
     border-radius: .25em;
     color: white;
+    font-size: 1rem;
 }
+
+.toRegister-container {
+    margin-bottom: .5rem;
+}
+
+
 
 /* Dashboard screen style */
 
@@ -241,8 +250,20 @@ nav {
     background-color: inherit;
 }
 
-.todos-container-buttons > svg {
+.todos-container-buttons > button:hover {
+    opacity: 0.65;
+}
+
+.todos-container-buttons > button:active {
+    opacity: 0.35;
+}
+
+.todos-container-buttons > button + button {
     color: rgb(1,233,134);
+}
+
+#faSquare {
+    color: white;
 }
 
 .todo {
@@ -272,16 +293,24 @@ nav {
     margin: 1.5em 0;
 }
 
-.completed-container > span {
+.completed-container > button {
     padding: .7em;
     color: white;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
 }
 
-.not-completed {
+.completed-container > button:hover {
+    opacity: 0.85;
+}
+
+
+.active {
     background-color: rgb(1,233,134);
 }
 
-.completed {
+.not-active {
     background-color: rgb(73,73,73)
 }
 
